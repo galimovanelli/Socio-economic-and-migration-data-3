@@ -1,0 +1,200 @@
+.chproplet {
+    text-align: center;
+    width: 120px;
+    /* height: 100%; */
+    top: 110px;
+    left: 10px;
+    padding: 0px;
+    z-index: 410;
+    position: absolute;
+    visibility: inherit;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    align-items: center;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 0%);
+}
+
+#chproplet_go {
+    padding: 0;
+    justify-content: flex-start;
+    border-bottom: none;
+    display: inline-block;
+    border-radius: 4px;
+    width: 90px;
+    height: 26px;
+    border: none;
+    background-color: grey;
+    font: 13px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: white;
+    /* text-shadow: 0px 0px 4px black; */
+    margin-bottom: 5px;
+    background-color: #0d6efd;
+}
+
+#chproplet_del {
+    padding: 0;
+    justify-content: flex-start;
+    border-bottom: none;
+    display: inline-block;
+    border-radius: 4px;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background-color: white;
+    font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.chproplet_del_img {
+    width: 24px;
+    height: 24px;
+    fill: #0d6efd;
+}
+
+#textbox {
+    width: 52px;
+    font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.chproplet_text {
+    font: 14px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+    line-height: 1;
+    margin: 0 5px 0 5px;
+}
+
+.in {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+
+/* скрываем чекбокс */
+
+#menu__toggle {
+    opacity: 0;
+}
+
+
+/* стилизуем кнопку */
+
+.menu__btn {
+    display: flex;
+    /* используем flex для центрирования содержимого */
+    align-items: center;
+    /* центрируем содержимое кнопки */
+    position: fixed;
+    top: 110px;
+    left: 10px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 1;
+    background-color: white;
+    padding: 3px;
+    border-radius: 4px;
+    background-image: url(images/art-palette.png);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 40%);
+}
+
+.menu__box {
+    visibility: hidden;
+    background-color: white;
+    width: 130px;
+    height: 100%;
+    margin-left: 10px;
+    margin-top: -12px;
+    padding-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgb(0 0 0 / 40%);
+}
+
+#menu__toggle:checked~.menu__box {
+    visibility: visible;
+}
+
+#menu__toggle:checked~.menu__btn {
+    background-color: white;
+    left: 115px;
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+    background-image: url(images/cancel.svg);
+    box-shadow: 0 1px 5px rgb(0 0 0 / 0%);
+}
+
+#menu__toggle:checked~.legend {
+    visibility: visible;
+}
+
+
+/* для инфопанели НАЧАЛО */
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.info h4 {
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    margin: 0 0 5px;
+    color: #777;
+}
+
+
+/* для инфопанели КОНЕЦ */
+
+
+/*Legend specific*/
+
+.legend {
+    visibility: hidden;
+    padding: 6px 8px;
+    font: 14px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    line-height: 24px;
+    color: #555;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    /* margin-left: 15px; */
+}
+
+.legend h4 {
+    text-align: center;
+    font-size: 16px;
+    margin: 2px 12px 8px;
+    color: #777;
+}
+
+.legend span {
+    /* position: relative;
+    bottom: 3px; */
+    float: left;
+    text-align: left;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin: 0 8px 0 0;
+    /* opacity: 0.7; */
+}
+
+.legend i.icon {
+    background-size: 18px;
+    background-color: rgba(255, 255, 255, 1);
+}
