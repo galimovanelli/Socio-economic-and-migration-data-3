@@ -58,7 +58,7 @@
 
         .modal .modal_content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
             width: 750px;
@@ -146,6 +146,70 @@
         <div id="my_modal" class="modal">
             <div class="modal_content">
                 <span class="close_modal_window">×</span>
+                <select id="select__id">
+                    <option value="1">Абзелиловский район</option>
+                    <option value="2">Альшеевский район</option>
+                    <option value="3">Архангельский район</option>
+                    <option value="4">Аскинский район</option>
+                    <option value="5">Аургазинский район</option>
+                    <option value="6">Баймакский район</option>
+                    <option value="7">Бакалинский район</option>
+                    <option value="8">Балтачевский район</option>
+                    <option value="9">Белебеевский район</option>
+                    <option value="10">Белокатайский район</option>
+                    <option value="11">Белорецкий район</option>
+                    <option value="12">Бижбулякский район</option>
+                    <option value="13">Бирский район</option>
+                    <option value="14">Благоварский район</option>
+                    <option value="15">Благовещенский район</option>
+                    <option value="16">Буздякский район</option>
+                    <option value="17">Бураевский район</option>
+                    <option value="18">Бурзянский район</option>
+                    <option value="19">Гафурийский район</option>
+                    <option value="20">Давлекановский район</option>
+                    <option value="21">Дуванский район</option>
+                    <option value="22">Дюртюлинский район</option>
+                    <option value="23">Ермекеевский район</option>
+                    <option value="24">Зианчуринский район</option>
+                    <option value="25">Зилаирский район</option>
+                    <option value="26">Иглинский район</option>
+                    <option value="27">Илишевский район</option>
+                    <option value="28">Ишимбайский район</option>
+                    <option value="29">Калтасинский район</option>
+                    <option value="30">Караидельский район</option>
+                    <option value="31">Кармаскалинский район</option>
+                    <option value="32">Кигинский район</option>
+                    <option value="33">Краснокамский район</option>
+                    <option value="34">Кугарчинский район</option>
+                    <option value="35">Куюргазинский район</option>
+                    <option value="36">Кушнаренковский район</option>
+                    <option value="37">Мелеузовский район</option>
+                    <option value="38">Мечетлинский район</option>
+                    <option value="39">Мишкинский район</option>
+                    <option value="40">Миякинский район</option>
+                    <option value="41">Нуримановский район</option>
+                    <option value="42">Салаватский район</option>
+                    <option value="43">Стерлибашевский район</option>
+                    <option value="44">Стерлитамакский район</option>
+                    <option value="45">Татышлинский район</option>
+                    <option value="46">Туймазинский район</option>
+                    <option value="47">Уфимский район</option>
+                    <option value="48">Учалинский район</option>
+                    <option value="49">Фёдоровский район</option>
+                    <option value="50">Хайбуллинский район</option>
+                    <option value="51">Чекмагушевский район</option>
+                    <option value="52">Чишминский район</option>
+                    <option value="53">Шаранский район</option>
+                    <option value="54">Янаульский район</option>
+                    <option value="55">г. Уфа</option>
+                    <option value="56">г. Агидель</option>
+                    <option value="57">г. Кумертау</option>
+                    <option value="58">г. Нефтекамск</option>
+                    <option value="59">г. Октябрьский</option>
+                    <option value="60">г. Салават</option>
+                    <option value="61">г. Сибай</option>
+                    <option value="62">г. Стерлитамак</option>
+                </select>
                 <div id="graph__content">
                     <canvas id="graph__element" style="width: 600px; height: 400px;"></canvas>
                 </div>
@@ -438,7 +502,7 @@
                     dataForGraphData.push(Object.values(data)[0]);
                     dataFromGraphLabel.push(Object.values(data)[1]);
                 }
-                console.log( dataFromGraphLabel);
+                console.log(dataFromGraphLabel);
                 console.log(dataForGraphData);
                 dataChartJs = {
                     labels: dataFromGraphLabel,
