@@ -105,7 +105,7 @@
 
         #graph__content {
             width: 650px;
-            height: 350px;
+            height: 500px;
             border: red dashed 2px;
             margin: auto;
         }
@@ -146,11 +146,14 @@
         <div id="my_modal" class="modal">
             <div class="modal_content">
                 <span class="close_modal_window">×</span>
-                <div id="graph__content"></div>
+                <div id="graph__content">
+                    <canvas id="graph__element" style="width: 600px; height: 400px;"></canvas>
+                </div>
                 <button type="button" id="graph__go">Построить график</button>
             </div>
         </div>
     </div>
+
 
     <script src="js/qgis2web_expressions.js"></script>
     <script src="js/leaflet.js"></script>
@@ -164,8 +167,12 @@
     <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
     <script src="data/municipality_1.js"></script>
     <script src="data/city_2.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         var highlightLayer;
+        console.log(google);
+        window.google = google;
 
         //функция, которая отвечает за изменения цвета объекта при наведении на него мышью
         function highlightFeature(e) {
@@ -389,6 +396,7 @@
         var modal = document.getElementById("my_modal");
         var btn = document.getElementById("btn_modal_window");
         var span = document.getElementsByClassName("close_modal_window")[0];
+        var canv = document.querySelector('#graph__element');
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -406,15 +414,77 @@
 
         var polygonIDforGraph = 10;
         var yearForGraph = 2013;
+        var table = 'v_migrat_inf';
+        var param = 'drop_out';
+        var dataForGraph = [
+            ['Год', 'Значение']
+        ];
+        var dataForGraphData = [];
+        var dataFromGraphLabel = [];
+        var dataGraphFromServer = [];
+
 
         graph__go.onclick = function() {
+            console.log(canv);
             //получаем айдишник из БД с помощью асинхронного запроса
-            fetch("graph.php?polygonIDforGraph=" + polygonIDforGraph + "&yearForGraph=" + yearForGraph).then((response) => {
+            fetch("data_graph.php?district=" + polygonIDforGraph + "&table=" + table + "&param=" + param).then((response) => {
                 // тут HTTP-ответ, вытаскиваем данные из него
                 return response.text()
             }).then((content) => {
-                // console.log(content);
-                document.getElementById('graph__content').innerHTML = content;
+                console.log(content);
+                dataGraphFromServer = JSON.parse(content);
+                for (const data of dataGraphFromServer) {
+                    dataForGraph.push(Object.values(data));
+                    dataForGraphData.push(Object.values(data)[0]);
+                    dataFromGraphLabel.push(Object.values(data)[1]);
+                }
+                console.log( dataFromGraphLabel);
+                console.log(dataForGraphData);
+                dataChartJs = {
+                    labels: dataFromGraphLabel,
+                    datasets: [{
+                        label: 'My First dataset',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        barPercentage: 0.5,
+                        barThickness: 6,
+                        maxBarThickness: 8,
+                        minBarLength: 2,
+                        data: dataForGraphData
+                    }]
+                }
+                const config = {
+                    type: 'bar',
+                    data: dataChartJs,
+                    options: {}
+                };
+                console.log(config);
+                var myChart = new Chart(
+                    canv,
+                    config
+                );
+
+                // console.log(dataForGraph);
+                // console.log(google);
+                // google.load("visualization", "1", {packages: ["corechart"]});
+                // google.setOnLoadCallback(drawChart);
+                // var drawChart = function() {
+                //     console.log('Draw');
+                //     var googleData = window.google.visualization.arrayToDataTable(dataForGraph);
+                // var options = {
+                //     title: 'График', // - заголовок диаграммы.
+                //     series: {0: {color: 'green'}, 1: {color: 'black'}}, // - цвета столбцов.
+                //     hAxis: {title: 'Год', titleTextStyle: {color: 'green'}} // - цвет и надпись, нижняя.
+                // };
+                // var chart = new google.visualization.ColumnChart(document.getElementById('graph__element'));
+                // chart.draw(googleData, options);
+
+                // };
+
+
+
+
+                // document.getElementById('graph__content').innerHTML = content;
 
             });
         }
