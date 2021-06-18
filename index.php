@@ -98,7 +98,7 @@
             background-color: white;
             padding: 3px;
             border-radius: 4px;
-            background-image: url(images/graph.png);
+            background-image: url(css/images/graph.png);
             box-shadow: 0 1px 5px rgb(0 0 0 / 40%);
             border-width: 0px;
         }
@@ -142,7 +142,7 @@
     </div>
 
     <div class="graph">
-        <button id="btn_modal_window">Open Modal</button>
+        <button id="btn_modal_window"></button>
         <div id="my_modal" class="modal">
             <div class="modal_content">
                 <span class="close_modal_window">×</span>
@@ -209,6 +209,20 @@
                     <option value="60">г. Салават</option>
                     <option value="61">г. Сибай</option>
                     <option value="62">г. Стерлитамак</option>
+                </select>
+                <select id="select__param">
+                    <option value="population">Численность населения</option>
+                    <option value="mortality">Коэффициент смертности</option>
+                    <option value="fertility">Коэффициент рождаемости</option>
+                    <option value="drop_out">Численность выбывших</option>
+                    <option value="arrive">Численность прибывших</option>
+                    <option value="balance">Сальдо миграции</option>
+                    <option value="employed">Среднесписочная численность занятых в экономике</option>
+                    <option value="aver_salary">Среднемесячная заработная плата</option>
+                    <option value="emission">Выбросы в атмосферу</option>
+                    <option value="investment">Объем инвестиций в основной капитал</option>
+                    <option value="ship_products">Объем отгруженной продукции</option>
+                    <option value="attract_coef_value">Коэффициент привлекательности</option>
                 </select>
                 <div id="graph__content">
                     <canvas id="graph__element" style="width: 600px; height: 400px;"></canvas>
