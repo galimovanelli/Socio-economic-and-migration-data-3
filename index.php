@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="css/qgis2web.css">
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+    <link rel="stylesheet" href="css/bash_inf.css">
     <link rel="stylesheet" href="css/choroplet.css">
+    <link rel="stylesheet" href="css/graph.css">
 
     <style>
         html,
@@ -23,92 +25,7 @@
             height: 100%;
             padding: 0;
             margin: 0;
-        }
-
-        .graph {
-            text-align: center;
-            /* width: 120px; */
-            /* height: 100%; */
-            top: 145px;
-            left: 10px;
-            padding: 0px;
-            z-index: 410;
-            position: absolute;
-            visibility: inherit;
-            display: flex;
-            flex-direction: column;
-            background-color: rgba(255, 255, 255, 0);
-            border-radius: 5px;
-            align-items: center;
-            box-shadow: 0 1px 5px rgb(0 0 0 / 0%);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.6);
-            z-index: 1000;
-        }
-
-        .modal .modal_content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 750px;
-            z-index: 99999;
-            /* display: flex;
-    justify-content: center; */
-        }
-
-        .modal .modal_content .close_modal_window {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        #graph__go {
-            padding: 0;
-            justify-content: flex-start;
-            border-bottom: none;
-            display: inline-block;
-            border-radius: 4px;
-            /* width: 90px; */
-            height: 26px;
-            border: none;
-            background-color: grey;
-            font: 13px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
-            color: white;
-            margin-bottom: 5px;
-            background-color: #0d6efd;
-        }
-
-        #btn_modal_window {
-            width: 26px;
-            height: 26px;
-            /* justify-content: start; */
-            background-color: white;
-            padding: 3px;
-            border-radius: 4px;
-            background-image: url(css/images/graph.png);
-            box-shadow: 0 1px 5px rgb(0 0 0 / 40%);
-            border-width: 0px;
-        }
-
-        #graph__content {
-            width: 650px;
-            height: 500px;
-            border: red dashed 2px;
-            margin: auto;
-        }
+        }        
     </style>
 
     <title></title>
@@ -117,6 +34,17 @@
 <body>
     <div id="map">
     </div>
+
+    <div class="bash__inf">
+        <button id="btn_modal_window_bash"></button>
+        <div id="my_modal_bash" class="modal_bash">
+            <div class="modal_content_bash">
+                <span class="close_modal_window_bash">×</span>
+                <p>Тут будет статистика по РБ</p>
+            </div>
+        </div>
+    </div>
+
     <div class="chproplet">
         <input id="menu__toggle" type="checkbox" />
         <label class="menu__btn" for="menu__toggle">
@@ -146,6 +74,7 @@
         <div id="my_modal" class="modal">
             <div class="modal_content">
                 <span class="close_modal_window">×</span>
+                
                 <select id="select__id">
                     <option value="1">Абзелиловский район</option>
                     <option value="2">Альшеевский район</option>
@@ -222,10 +151,14 @@
                     <option value="emission">Выбросы в атмосферу</option>
                     <option value="investment">Объем инвестиций в основной капитал</option>
                     <option value="ship_products">Объем отгруженной продукции</option>
-                    <option value="attract_coef_value">Коэффициент привлекательности</option>
+                    <option value="coef_value">Коэффициент привлекательности</option>
                 </select>
+                <div class="title__content">
+                    <h3 class="graph__title--district"></h3>
+                    <h3 class="graph__title"></h3>
+                </div>
                 <div id="graph__content">
-                    <canvas id="graph__element" style="width: 600px; height: 400px;"></canvas>
+                    <canvas id="graph__element" width="600" height="400"></canvas>
                 </div>
                 <button type="button" id="graph__go">Построить график</button>
             </div>
@@ -334,6 +267,27 @@
             //     </table>';
             // layer.bindPopup(popupContent, {maxHeight: 400});
         }
+
+        var modal_bash = document.getElementById("my_modal_bash");
+        var btn_bash = document.getElementById("btn_modal_window_bash");
+        var span_bash = document.getElementsByClassName("close_modal_window_bash")[0];
+
+
+        btn_bash.onclick = function() {
+            modal_bash.style.display = "block";
+        }
+
+        span_bash.onclick = function() {
+            modal_bash.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal_bash.style.display = "none";
+            }
+        }
+
+
 
         chproplet_go.onclick = function() {
             // сразу блокируем кнопку "районированить", чтоб пользователь ее разблокировал, нужно нажать на корзину, т.е. очистить карту
@@ -475,6 +429,10 @@
         var btn = document.getElementById("btn_modal_window");
         var span = document.getElementsByClassName("close_modal_window")[0];
         var canv = document.querySelector('#graph__element');
+        var districtsList = document.querySelector('#select__id');
+        var paramsList = document.querySelector('#select__param');
+        var graphTitle = document.querySelector('.graph__title');
+        var graphTitleForDistrict = document.querySelector('.graph__title--district');
 
         btn.onclick = function() {
             modal.style.display = "block";
@@ -489,21 +447,49 @@
                 modal.style.display = "none";
             }
         }
+        var getTableForParam = function(param) {
+            var table = '';
+            var demogrParams = ['population', 'mortality', 'fertility'];
+            var migrParams = ['drop_out', 'arrive', 'balance'];
+            var socialParams = ['employed', 'aver_salary', 'emission', 'investment', 'ship_products'];
+            var coef = ['coef_value'];
+            if (demogrParams.includes(param)) {
+                table = 'v_demograph_inf';
+            }
+            if (migrParams.includes(param)) {
+                table = 'v_migrat_inf';
+            }
+            if (socialParams.includes(param)) {
+                table = 'v_soc_econ_inf';
+            }
+            if (coef.includes(param)) {
+                table = 'v_attract_coef';
+            }
+            return table;
 
-        var polygonIDforGraph = 10;
-        var yearForGraph = 2013;
-        var table = 'v_migrat_inf';
-        var param = 'drop_out';
+        };
+
+
         var dataForGraph = [
             ['Год', 'Значение']
         ];
         var dataForGraphData = [];
         var dataFromGraphLabel = [];
         var dataGraphFromServer = [];
-
+        var isChartSeted = false;
+        var myChart;
 
         graph__go.onclick = function() {
+            var dataForGraphData = [];
+            var dataFromGraphLabel = [];
             console.log(canv);
+            var context = canv.getContext('2d');
+            context.clearRect(0, 0, canv.width, canv.height);
+            var polygonIDforGraph = districtsList.value;
+            var param = paramsList.value;
+            var table = getTableForParam(param);
+            graphTitle.textContent = paramsList.options[paramsList.selectedIndex].textContent;
+            graphTitleForDistrict.textContent = districtsList.options[districtsList.selectedIndex].textContent;
             //получаем айдишник из БД с помощью асинхронного запроса
             fetch("data_graph.php?district=" + polygonIDforGraph + "&table=" + table + "&param=" + param).then((response) => {
                 // тут HTTP-ответ, вытаскиваем данные из него
@@ -521,7 +507,7 @@
                 dataChartJs = {
                     labels: dataFromGraphLabel,
                     datasets: [{
-                        label: 'My First dataset',
+                        label: graphTitle.textContent,
                         backgroundColor: 'rgb(255, 99, 132)',
                         borderColor: 'rgb(255, 99, 132)',
                         barPercentage: 0.5,
@@ -537,7 +523,13 @@
                     options: {}
                 };
                 console.log(config);
-                var myChart = new Chart(
+                if (isChartSeted) {
+                    console.log('График построен');
+                    myChart.destroy();
+                }
+                isChartSeted = true;
+                console.log(myChart);
+                myChart = new Chart(
                     canv,
                     config
                 );
