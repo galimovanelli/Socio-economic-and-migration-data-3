@@ -533,32 +533,8 @@
                     canv,
                     config
                 );
-
-                // console.log(dataForGraph);
-                // console.log(google);
-                // google.load("visualization", "1", {packages: ["corechart"]});
-                // google.setOnLoadCallback(drawChart);
-                // var drawChart = function() {
-                //     console.log('Draw');
-                //     var googleData = window.google.visualization.arrayToDataTable(dataForGraph);
-                // var options = {
-                //     title: 'График', // - заголовок диаграммы.
-                //     series: {0: {color: 'green'}, 1: {color: 'black'}}, // - цвета столбцов.
-                //     hAxis: {title: 'Год', titleTextStyle: {color: 'green'}} // - цвет и надпись, нижняя.
-                // };
-                // var chart = new google.visualization.ColumnChart(document.getElementById('graph__element'));
-                // chart.draw(googleData, options);
-
-                // };
-
-
-
-
-                // document.getElementById('graph__content').innerHTML = content;
-
             });
         }
-
 
         function style_municipality_1_0() {
             return {
@@ -599,21 +575,6 @@
                 },
                 // mouseover: highlightFeature,
             });
-            // var popupContent = '<table>\
-            //         <tr>\
-            //             <td colspan="2">' + (feature.properties['name_municip'] !== null ? autolinker.link(feature.properties['name_municip'].toLocaleString()) : '') + '</td>\
-            //         </tr>\
-            //         <tr>\
-            //             <td colspan="2">' + (feature.properties['id_municip'] !== null ? autolinker.link(feature.properties['id_municip'].toLocaleString()) : '') + '</td>\
-            //         </tr>\
-            //         <tr>\
-            //             <td colspan="2">' + (feature.properties['lat'] !== null ? autolinker.link(feature.properties['lat'].toLocaleString()) : '') + '</td>\
-            //         </tr>\
-            //         <tr>\
-            //             <td colspan="2">' + (feature.properties['lot'] !== null ? autolinker.link(feature.properties['lot'].toLocaleString()) : '') + '</td>\
-            //         </tr>\
-            //     </table>';
-            // layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
         function style_city_2_0() {

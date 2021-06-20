@@ -118,6 +118,34 @@ function f_attract_coef(&$res, $con, $year_arg)
         border-color: white;
         border-style: solid;
     }
+    .table_koef td{
+        background-color: #c4dcff;
+    }
+    .table_koef td:first-child{
+        background-color: white;
+    }
+    .table_koef td:nth-child(2){
+        background-color: white;
+    }
+    .table_koef td:nth-child(3){
+        background-color: white;
+    }
+    .table_koef td:nth-child(4){
+        background-color: white;
+    }
+    .table_koef td:nth-child(5){
+        background-color: white;
+    }
+    .table_koef td:nth-child(6){
+        background-color: white;
+    }
+    .table_koef td:nth-child(7){
+        background-color: white;
+    }
+    .table_koef td:nth-child(8){
+        background-color: white;
+    }
+
 </style>
 
 <!-- ВЕРСТКА. Вкладки по всем таблицам из БД + графики (динимика) -->
@@ -159,9 +187,9 @@ function f_attract_coef(&$res, $con, $year_arg)
             <li class="nav-item" role="presentation">
                 <a class="nav-link" id="pills-edit-demog-tab" data-bs-toggle="pill" href="#pills-edit-demog" role="tab" aria-controls="pills-edit-demog" aria-selected="false">Редактировать</a>
             </li>
-            <li class="nav-item" role="presentation">
+            <!-- <li class="nav-item" role="presentation">
                 <a class="nav-link" id="pills-gist-demog-tab" data-bs-toggle="pill" href="#pills-gist-demog" role="tab" aria-controls="pills-gist-demog" aria-selected="false">Гистограмма</a>
-            </li>
+            </li> -->
         </ul>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-initial-demog" role="tabpanel" aria-labelledby="pills-initial-demog-tab">
@@ -298,7 +326,7 @@ function f_attract_coef(&$res, $con, $year_arg)
                     </form>
                 </tr>
             </div>
-            <div class="tab-pane fade" id="pills-gist-demog" role="tabpanel" aria-labelledby="pills-gist-demog-tab">
+            <!-- <div class="tab-pane fade" id="pills-gist-demog" role="tabpanel" aria-labelledby="pills-gist-demog-tab">
 
                 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -317,7 +345,7 @@ function f_attract_coef(&$res, $con, $year_arg)
                     <div class="tab-pane fade" id="pills-rozd-demog" role="tabpanel" aria-labelledby="pills-rozd-demog-tab"></div>
                 </div>
 
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Содержимое вкладки динамика демографических данных -->
@@ -895,7 +923,7 @@ function f_attract_coef(&$res, $con, $year_arg)
         ?>
         <h1> <strong> <?php echo $row[1] ?> </strong> </h1>
 
-        <table>
+        <table class="table_koef">
             <tr>
                 <td><strong>Год</strong></td>
                 <?php
